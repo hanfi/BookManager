@@ -11,7 +11,25 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		// $this->call('UserTableSeeder');
+		 $this->call('BooksTableSeeder');
 	}
+
+}
+class BooksTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('books')->delete();
+
+        Book::create(array(
+            'id' => 1,
+            'isbn' => '9780006479888'
+        ));
+
+        Book::create(array(
+            'id' => 2,
+            'isbn' => '9782266122122'
+        ));
+    }
 
 }
