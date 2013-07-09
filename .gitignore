@@ -3,3 +3,17 @@ dist
 .tmp
 .sass-cache
 app/components
+.idea/.name
+.idea/workspace.xml
+.idea/encodings.xml
+.idea/frontEnd.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/encodings.xml
+.idea/frontEnd.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
