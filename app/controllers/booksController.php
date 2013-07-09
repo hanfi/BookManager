@@ -23,7 +23,7 @@ class booksController extends \BaseController {
             array_push($response, $push);
 
         }
-        return Response::json($response,200);
+        return Response::json(["books" => $response],200);
 
 	}
 
