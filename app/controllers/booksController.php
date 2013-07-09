@@ -15,10 +15,11 @@ class booksController extends \BaseController {
         $response = [];
         foreach($books as $book){
             $httpResponse = \Httpful\Request::get($url.$book->isbn)->send();
-            array_push($response, $httpResponse->body->items);
+            $push = ["book" => $book, "detail" => $httpResponse->body->items];
+            array_push($response, $push);
 
         }
-        return Response::json($response,200);
+        return Response::json(["books" => $response],200);
 
 	}
 
