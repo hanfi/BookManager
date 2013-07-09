@@ -45,6 +45,13 @@ class booksController extends \BaseController {
 	public function store()
 	{
 		//
+        $book = new Book;
+        $book->isbn =  Input::get('isbn');
+        $book->save();
+        return Response::json([
+                'error' => false,],
+            201
+        );
 	}
 
 	/**
