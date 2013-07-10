@@ -10,20 +10,13 @@ class booksController extends \BaseController {
 	public function index()
 	{
 		//
-        $books = Book::all();
-        $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
-        $response = [];
-        foreach($books as $book){
-            $httpResponse = \Httpful\Request::get($url.$book->isbn)->send();
-            $resp= $httpResponse->body->items;
-            $push = array(
-                "id" => $book->id,
-                "isbn" => $book->isbn,
-                "details" => $resp[0]->volumeInfo);
-            array_push($response, $push);
-
+        $books = Book::orderBy('id',"desc")->get();
+        foreach($books as $book)
+        {
+            $book->details = json_decode($book->details);
         }
-        return Response::json(["books" => $response],200);
+
+        return Response::json(["books" => $books->toArray()],200);
 
 	}
 
@@ -46,7 +39,10 @@ class booksController extends \BaseController {
 	{
 		//
         $book = new Book;
-        $book->isbn =  Input::get('isbn');
+        $book->isbn = Input::get('isbn') ;
+        $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+        $httpResponse = \Httpful\Request::get($url.Input::get('isbn'))->send();
+        $book->details = json_encode($httpResponse->body->items);
         $book->save();
         return Response::json([
                 'error' => false,],
