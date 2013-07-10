@@ -13,7 +13,7 @@ class booksController extends \BaseController {
         $books = Book::orderBy('id',"desc")->get();
         foreach($books as $book)
         {
-            $book->details = json_decode($book->details);
+            $book->details = json_decode($book->details)[0];
         }
 
         return Response::json(["books" => $books->toArray()],200);
