@@ -1,12 +1,11 @@
 <div class="hero-unit">
   <h1>Books Manager</h1>
   <table class="table table-striped">
-    <tr ng-repeat="item in books.books">
-      <td class="span2">
-       <a ng-href="{{ item.details.volumeInfo.canonicalVolumeLink }}"><img ng-src="{{ item.details.volumeInfo.imageLinks.thumbnail }}"></a>
-      </td>
+    <tr  ng-repeat="item in books.books">
+      <td class="span2" book="item"></td>
       <td class="span-10">
         <h4 ng-bind="item.details.volumeInfo.title"></h4>
+        <button class="btn btn-danger" ng-click="removeBook(item.id)"><span class="icon-remove-circle"></span> Remove Book</button>
         <h5 ng-bind="item.details.volumeInfo.authors"></h5>
         <h5 ng-bind-html-unsafe="item.details.volumeInfo.averageRating | rating"></h5>
         <h5 ng-bind="item.details.volumeInfo.publishedDate"></h5>
