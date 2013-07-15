@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('frontEndApp')
-  .directive('book', function ($filter) {
+  .directive('book', function () {
     return {
       template: '',
       restrict: 'EAC',
