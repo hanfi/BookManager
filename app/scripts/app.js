@@ -7,6 +7,10 @@ angular.module('frontEndApp', ['ngResource'])
         templateUrl: 'views/books.html',
         controller: 'BooksCtrl'
       })
+        .when('/addbook', {
+        templateUrl: 'views/addBook.html',
+        controller: 'AddBookCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
