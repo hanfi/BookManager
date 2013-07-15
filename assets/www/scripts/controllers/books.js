@@ -9,12 +9,19 @@ angular.module('frontEndApp')
                       "Result: " + result.text + "\n" +
                       "Format: " + result.format + "\n" +
                       "Cancelled: " + result.cancelled);
-            books.save({"isbn" : result.text })
-            $scope.books = []
-            $scope.books = books.get()
+            books.save({"isbn" : result.text },function(result){
+            	alert('Book saved in database')
+            	$scope.books = []
+                $scope.books = books.get()
+            })
         }, function(error) {
             alert("Scanning failed: " + error);
                     }
         );
     }
+    $scope.removeBook= function(id){
+        books.delete({'id': id},function(){
+          $scope.books = books.get()
+        })
+      }
   });

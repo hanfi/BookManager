@@ -2,6 +2,5 @@
 
 angular.module('frontEndApp')
   .factory('books', function ($resource) {
-      return $resource('http://172.16.10.109/api/v1/books',
-          {get: {method: 'GET'}})
+      return $resource('http://192.168.1.4/api/v1/books/:id')
   });

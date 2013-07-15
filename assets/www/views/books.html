@@ -6,17 +6,18 @@
 </div>
         <div class="container">
   <table class="table table-striped">
-    <tr ng-repeat="book in books.books">
-      <td class="span12">
-       <a ng-href="{{ book.details.volumeInfo.canonicalVolumeLink }}"><img ng-src="{{ book.details.volumeInfo.imageLinks.thumbnail }}"></a>
+    <tr ng-repeat="item in books.books">
+      <td class="span12 book:item"  >
       </td>
       <td class="span12">
-        <h4 ng-bind="book.details.volumeInfo.title"></h4>
-        <h5 ng-bind="book.details.volumeInfo.authors"></h5>
-        <h5 ng-bind="book.details.volumeInfo.publishedDate"></h5>
-        <h6 ng-bind="book.details.volumeInfo.pageCount"></h6>
-        <h6 ng-bind="book.details.volumeInfo.categories"></h6>
-        <p ng-bind="book.details.volumeInfo.description"></p>
+        <h4 ng-bind="item.details.volumeInfo.title"></h4>
+        <h5 ng-bind="item.details.volumeInfo.authors"></h5>
+        <h5 ng-bind-html-unsafe="item.details.volumeInfo.averageRating | rating"></h5>
+        <h5 ng-bind="item.details.volumeInfo.publishedDate"></h5>
+        <h6 ng-bind="item.details.volumeInfo.pageCount | pages"></h6>
+        <h6 ng-bind="item.details.volumeInfo.categories"></h6>
+        <button class="btn btn-danger" ng-click="removeBook(item.id)"><span class="icon-remove-circle"></span> Remove Book</button>
+        <p ng-bind="item.details.volumeInfo.description | textLimit"></p>
       </td>
     </tr>
   </table>
